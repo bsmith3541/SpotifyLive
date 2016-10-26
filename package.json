@@ -1,0 +1,11 @@
+{
+  "name": "spotify_live",
+  "version": "1.0.0",
+  "description": "SpotifyLive connects Spotify users with their favorite artists' live performances.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brandon Smith",
+  "license": "ISC"
+}
