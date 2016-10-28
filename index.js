@@ -3,6 +3,7 @@ var request = require('request');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 var config = require('./config');
+const port = process.env.PORT || 8888;
 
 /**
  * Generates a random string containing numbers and letters
@@ -127,5 +128,6 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
-console.log('Listening on 8888');
-app.listen(8888);
+app.listen(port, function() {
+  console.log(`Now listening on ${port}`);
+});
