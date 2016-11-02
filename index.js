@@ -1,10 +1,12 @@
-var express = require('express');
-var request = require('request');
-var querystring = require('querystring');
-var cookieParser = require('cookie-parser');
-var config = require('./config');
+const express = require('express');
+const request = require('request');
+const querystring = require('querystring');
+const cookieParser = require('cookie-parser');
+const config = require('./config');
 const port = process.env.PORT || 8888;
-var db = require('./db/initialize');
+const db = require('./db/initialize');
+const userDb = require('./models/users');
+
 
 /**
  * Generates a random string containing numbers and letters
@@ -128,7 +130,7 @@ app.get('/refresh_token', function(req, res) {
     }
   });
 });
-
+db.initializeDb();
 app.listen(port, function() {
   console.log(`Now listening on ${port}`);
 });
