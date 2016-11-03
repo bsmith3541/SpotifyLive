@@ -11,7 +11,7 @@ module.exports.initializeDb = function() {
     }
 
     const query = client.query(
-      'CREATE TABLE IF NOT EXISTS users(id SERIAL PRIMARY KEY, name text not null, email text not null)'
+      'CREATE TABLE IF NOT EXISTS users(id SERIAL PRIMARY KEY, name text not null, spotify_id text not null, email text not null)'
     );
     query.on('end', () => {
       client.end();

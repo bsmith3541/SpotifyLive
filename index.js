@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const config = require('./config');
 const port = process.env.PORT || 8888;
 const db = require('./db/initialize');
-const userDb = require('./models/users');
+const userModel = require('./models/users');
 
 
 /**
@@ -90,6 +90,7 @@ app.get('/callback', function(req, res) {
           // use the access token to access the Spotify Web API
           request.get(options, function(error, response, body) {
             console.log(body);
+            userModel.addUser(body);
           });
 
           // we can also pass the token to the browser to make requests from there
