@@ -9,7 +9,14 @@
   "author": "Brandon Smith",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
-    "pg": "^6.1.0"
+    "pg": "^6.1.0",
+    "querystring": "^0.2.0",
+    "request": "^2.78.0"
+  },
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "^3.1.2"
   }
 }
