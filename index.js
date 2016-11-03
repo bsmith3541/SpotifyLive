@@ -5,8 +5,10 @@ const cookieParser = require('cookie-parser');
 const config = require('./config');
 const port = process.env.PORT || 8888;
 const db = require('./db/initialize');
+require('dotenv').config();
 const userModel = require('./models/users');
 
+const redirect_uri = "http://localhost:8888/callback";
 
 /**
  * Generates a random string containing numbers and letters
@@ -39,9 +41,9 @@ app.get('/login', function(req, res) {
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
-      client_id: config.client_id,
+      client_id: process.env.CLIENT_ID,
       scope: scope,
-      redirect_uri: config.redirect_uri,
+      redirect_uri: redirect_uri,
       state: state
     }));
 });
@@ -66,11 +68,11 @@ app.get('/callback', function(req, res) {
         url: 'https://accounts.spotify.com/api/token',
         form: {
           code: code,
-          redirect_uri: config.redirect_uri,
+          redirect_uri: redirect_uri,
           grant_type: 'authorization_code'
         },
         headers: {
-          'Authorization': 'Basic ' + (new Buffer(config.client_id + ':' + config.client_secret).toString('base64'))
+          'Authorization': 'Basic ' + (new Buffer(process.env.CLIENT_ID + ':' + process.env.CLIENT_SECRET).toString('base64'))
         },
         json: true
       };
@@ -114,7 +116,7 @@ app.get('/refresh_token', function(req, res) {
   var refresh_token = req.query.refresh_token;
   var authOptions = {
     url: 'https://accounts.spotify.com/api/token',
-    headers: { 'Authorization': 'Basic ' + (new Buffer(config.client_id + ':' + config.client_secret).toString('base64')) },
+    headers: { 'Authorization': 'Basic ' + (new Buffer(process.env.CLIENT_ID + ':' + process.env.CLIENT_SECRET).toString('base64')) },
     form: {
       grant_type: 'refresh_token',
       refresh_token: refresh_token
