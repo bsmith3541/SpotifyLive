@@ -1,7 +1,9 @@
 {
   "name": "spotify_live",
   "version": "1.0.0",
-  "engine": "node 6.9.1",
+  "engines": {
+    "node": "6.9.1"
+  },
   "description": "SpotifyLive connects Spotify users with their favorite artists' live performances.",
   "main": "index.js",
   "scripts": {
