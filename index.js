@@ -2,7 +2,6 @@ const express = require('express');
 const request = require('request');
 const querystring = require('querystring');
 const cookieParser = require('cookie-parser');
-const config = require('./config');
 const port = process.env.PORT || 8888;
 const db = require('./db/initialize');
 require('dotenv').config();
